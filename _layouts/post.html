@@ -1,0 +1,62 @@
+---
+layout: default
+---
+<article class="post container">
+  {% if page.cover %}
+  <figure class="post-cover">
+    <img src="{{ page.cover | relative_url }}" alt="Cover">
+  </figure>
+  {% endif %}
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y" }}</time>
+      {% if page.tags %}
+      <span>•</span>
+      <span class="tags">
+        {% for t in page.tags %}
+          <a class="chip" href="/tags/#{{ t | slugify }}">#{{ t }}</a>
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if page.toc != false %}
+  <nav id="toc" class="toc"></nav>
+  {% endif %}
+
+  <section class="prose">
+    {{ content }}
+  </section>
+
+  <hr class="sep">
+
+  <section class="share">
+    <span>Share:</span>
+    <a class="btn outline" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ site.url }}{{ page.url }}">Twitter</a>
+    <a class="btn outline" href="https://www.linkedin.com/sharing/share-offsite/?url={{ site.url }}{{ page.url }}">LinkedIn</a>
+  </section>
+</article>
+
+<script>
+(function(){
+  const toc = document.getElementById('toc');
+  if(!toc) return;
+  const content = document.querySelector('.prose');
+  const headers = content ? content.querySelectorAll('h2, h3') : [];
+  if(!headers.length){ toc.remove(); return; }
+  const ul = document.createElement('ul');
+  headers.forEach(h => {
+    if(!h.id) h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-');
+    const li = document.createElement('li');
+    if (h.tagName === 'H3') li.style.marginLeft = '1rem';
+    const a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+  toc.appendChild(ul);
+})();
+</script>

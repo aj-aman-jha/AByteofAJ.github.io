@@ -1,0 +1,17 @@
+---
+layout: null
+permalink: /search.json
+---
+[
+{% for post in site.posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | jsonify }},
+    "date": "{{ post.date | date: "%b %d, %Y" }}",
+    "cover": {{ post.cover | default: '/assets/images/cover-1.svg' | jsonify }},
+    "excerpt": {{ post.excerpt | strip_html | normalize_whitespace | truncate: 140 | jsonify }},
+    "tags": {{ post.tags | jsonify }},
+    "content": {{ post.content | strip_html | normalize_whitespace | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]

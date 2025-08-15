@@ -1,0 +1,18 @@
+<article class="card" role="listitem">
+  <a class="card-link" href="{{ include.post.url }}">
+    <figure class="card-media">
+      <img src="{{ include.post.cover | default: '/assets/images/cover-1.svg' | relative_url }}" alt="Cover">
+    </figure>
+    <div class="card-body">
+      <h3 class="card-title">{{ include.post.title }}</h3>
+      <p class="card-excerpt">{{ include.post.excerpt | strip_html | truncate: 140 }}</p>
+      <div class="card-meta">
+        <time>{{ include.post.date | date: "%b %d, %Y" }}</time>
+        {% if include.post.tags and include.post.tags[0] %}
+        <span class="dot">•</span>
+        <span class="chip">#{{ include.post.tags[0] }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</article>

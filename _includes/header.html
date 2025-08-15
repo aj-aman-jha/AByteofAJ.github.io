@@ -1,0 +1,8 @@
+<div class="container nav">
+  <a class="brand" href="/"><span class="logo">A</span><span class="logo-alt">J</span> <strong>A Byte of AJ</strong></a>
+  <nav class="menu">
+    {% for item in site.nav %}
+    <a href="{{ item.url }}">{{ item.name }}</a>
+    {% endfor %}
+  </nav>
+</div>

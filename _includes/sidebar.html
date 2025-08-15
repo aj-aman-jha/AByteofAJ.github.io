@@ -1,0 +1,26 @@
+<div class="sidebar-box author">
+  <img class="avatar" src="{{ site.author.avatar | relative_url }}" alt="{{ site.author.name }}">
+  <div>
+    <h3>{{ site.author.name }}</h3>
+    <p class="muted">{{ site.author.bio }}</p>
+  </div>
+</div>
+
+<div class="sidebar-box">
+  <h4>Popular</h4>
+  <ul>
+    {% assign recent = site.posts | slice: 0, 5 %}
+    {% for p in recent %}
+      <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="sidebar-box">
+  <h4>Tags</h4>
+  <div class="tags-cloud">
+    {% for tag in site.tags %}
+      {% include tag-badge.html tag=tag[0] count=tag[1].size %}
+    {% endfor %}
+  </div>
+</div>

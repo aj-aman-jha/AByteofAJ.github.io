@@ -1,0 +1,11 @@
+<article class="featured" role="listitem">
+  <a class="featured-link" href="{{ include.post.url }}">
+    <img class="featured-img" src="{{ include.post.cover | default: '/assets/images/cover-2.svg' | relative_url }}" alt="Featured cover">
+    <div class="featured-mask"></div>
+    <div class="featured-copy">
+      <span class="chip">#{{ include.post.tags | first }}</span>
+      <h3>{{ include.post.title }}</h3>
+      <p>{{ include.post.excerpt | strip_html | truncate: 120 }}</p>
+    </div>
+  </a>
+</article>

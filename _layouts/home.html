@@ -1,0 +1,52 @@
+---
+layout: default
+---
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <h1 class="title">{{ site.title }}</h1>
+      <p class="subtitle">{{ site.description }}</p>
+      <div class="hero-actions">
+        <a class="btn solid" href="#latest">Read latest</a>
+        <a class="btn outline" href="/tags/">Browse tags</a>
+        <label class="toggle">
+          <input id="theme-toggle" type="checkbox" aria-label="Toggle dark mode">
+          <span>Dark</span>
+        </label>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="{{ '/assets/images/hero-tech.svg' | relative_url }}" alt="Tech abstract" />
+    </div>
+  </div>
+</section>
+
+{% assign featured = site.posts | where_exp: "p", "p.featured == true" | slice: 0, 6 %}
+{% if featured and featured.size > 0 %}
+<section class="container">
+  <div class="section-head">
+    <h2 class="section-title">Featured</h2>
+  </div>
+  <div class="featured-row" role="list">
+    {% for post in featured %}
+      {% include featured-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<section id="latest" class="container">
+  <div class="section-head">
+    <h2 class="section-title">Latest</h2>
+    {% if site.features.search %}
+    <div class="search">
+      <input id="search-input" type="text" placeholder="Search posts…">
+    </div>
+    {% endif %}
+  </div>
+  <div id="posts" class="posts-grid" role="list">
+    {% for post in site.posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>

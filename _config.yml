@@ -1,0 +1,47 @@
+title: "A Byte of AJ"
+description: "Tech insights, one byte at a time."
+url: "https://abyteofaj.github.io"
+baseurl: ""
+lang: "en"
+timezone: "Asia/Kolkata"
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+permalink: /:categories/:year/:month/:day/:title/
+
+author:
+  name: "AJ (Aman Jha)"
+  bio: "Engineer, tinkerer, and tech storyteller."
+  avatar: "/assets/images/hero-tech.svg"
+
+nav:
+  - name: Home
+    url: /
+  - name: Tags
+    url: /tags/
+  - name: About
+    url: /about/
+
+# Feature toggles
+features:
+  dark_mode: true
+  search: true
+  show_sidebar: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      cover: "/assets/images/cover-1.svg"
+      tags: ["tech"]
+      toc: true

@@ -1,0 +1,7 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.excerpt | default: site.description | strip_html | truncate: 160 }}">
+<link rel="alternate" type="application/rss+xml" href="{{ '/feed.xml' | relative_url }}" />
+<link rel="stylesheet" href="{{ '/assets/css/tech.css' | relative_url }}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='24' font-size='24'%3EAJ%3C/text%3E%3C/svg%3E">
